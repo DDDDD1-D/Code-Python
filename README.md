@@ -16,5 +16,8 @@ util目录下：
 | tibet_shp_load           | 加载青藏高原轮廓                                             |
 | tnflux                   | 计算TN Wave Activity Flux                                    |
 | water_vapor_flux         | 计算水汽通量和水汽通量散度，以及它们的垂直积分               |
+| composite                | 合成分析                                                     |
+| load_ncl_colormap        | 加载ncl的colormap                                            |
+| Q1                       | 计算Q1                                                       |
 
 example目录下是应用utils进行计算的结果，与ncl完全一致
