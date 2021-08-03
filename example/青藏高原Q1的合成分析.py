@@ -45,7 +45,7 @@ nlwrs = ds_nlwrs['nlwrs'].sel(time=ds_nlwrs['nlwrs'].time.dt.year.isin([x for x 
 lat = ds_dswrf['lat']
 lon = ds_dswrf['lon']
 
-q1 = Q1(dswrf, prate, shtfl, ulwrf, uswrf, nswrs, nlwrs)
+q1, AA, BB, CC = Q1(dswrf, prate, shtfl, ulwrf, uswrf, nswrs, nlwrs)
 
 q1_jja = Month_to_Season(q1, "JJA", "ave", 1980, 2020)
 
