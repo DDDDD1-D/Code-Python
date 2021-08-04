@@ -57,67 +57,69 @@ projection = ccrs.NorthPolarStereo()
 
 colormap = load_ncl_colormap("BlueDarkRed18.rgb")
 
-for var in [0, 1, 3]: 
-
-  var_son = Month_to_Season(varss[var], "SON", "ave", 1979, 2020)
+for season in ["SON", "OND", "NDJ"]:
+#  for var in [0, 1, 3]: 
+#
+#    var_son = Month_to_Season(varss[var], season, "ave", 1979, 2020)
+#  
+#    var_reg, reg_sig = Linear_Regression_dim(var_son, sic_idx, 0)
+#    var_reg_xr = xr.DataArray(var_reg,coords=[("lat",lat),("lon",lon)])
+#    reg_sig_xr = xr.DataArray(reg_sig,coords=[("lat",lat),("lon",lon)])
+#  
+#  # plot var
+#  
+#    plt.close
+#  
+#    var_reg_xr, lon1 = add_cyclic_point(var_reg_xr, coord=lon)
+#  #reg_sig_xr, lon2 = add_cyclic_point(reg_sig_xr, coord=lon)
+#  
+#    fig, ax = draw_north_polar_steoro(60)
+#  
+#    levels = np.linspace(-5,5,11) #[-4,-3.5,-3,-2.5,-2,-1.5,-1,-0.5,0,0.5] #np.linspace(-5,1,13)
+#  
+#    im = ax.contourf(lon1, lat, var_reg_xr, levels=levels, cmap='RdBu_r', transform=ccrs.PlateCarree(), extend="both")
+#  
+#    cb = plt.colorbar(im, orientation='horizontal', ticks=levels[::2], shrink=0.8)
+#    cb.ax.tick_params(labelsize=18)
+#  
+#  # plot significant regions
+#    sig1 = ax.contourf(lon, lat, reg_sig_xr, [np.min(reg_sig_xr),0.1], hatches=['..'], colors="None", zorder=1, transform=ccrs.PlateCarree())
+#  
+#    fig.show()
+#    fig.savefig("%s-%s.png" % (name[var],season), dpi=1000)
+#  
+#    print("%s-%s" % (name[var], season))
   
-  var_reg, reg_sig = Linear_Regression_dim(var_son, sic_idx, 0)
-  var_reg_xr = xr.DataArray(var_reg,coords=[("lat",lat),("lon",lon)])
-  reg_sig_xr = xr.DataArray(reg_sig,coords=[("lat",lat),("lon",lon)])
+
+  for var in [2]: 
+
+    var_son = Month_to_Season(varss[var], season, "ave", 1979, 2020)
+  
+    var_reg, reg_sig = Linear_Regression_dim(var_son, sic_idx, 0)
+    var_reg_xr = xr.DataArray(var_reg,coords=[("lat",lat),("lon",lon)])
+    reg_sig_xr = xr.DataArray(reg_sig,coords=[("lat",lat),("lon",lon)])
   
   # plot var
   
-  plt.close
+    plt.close
   
-  var_reg_xr, lon1 = add_cyclic_point(var_reg_xr, coord=lon)
+    var_reg_xr, lon1 = add_cyclic_point(var_reg_xr, coord=lon)
   #reg_sig_xr, lon2 = add_cyclic_point(reg_sig_xr, coord=lon)
   
-  fig, ax = draw_north_polar_steoro(60)
+    fig, ax = draw_north_polar_steoro(60)
   
-  levels = [-4,-3.5,-3,-2.5,-2,-1.5,-1,-0.5,0,0.5] #np.linspace(-5,1,13)
+    levels = np.linspace(-3,3,11) #[0,0.5,1,1.5,2,2.5,3,3.5,4,4.5] #np.linspace(-5,1,13)
   
-  im = ax.contourf(lon1, lat, var_reg_xr, levels=levels, cmap='Blues_r', transform=ccrs.PlateCarree(), extend="both")
+    im = ax.contourf(lon1, lat, var_reg_xr, levels=levels, cmap='RdBu_r', transform=ccrs.PlateCarree(), extend="both")
   
-  cb = plt.colorbar(im, orientation='horizontal', ticks=levels[::2], shrink=0.8)
-  cb.ax.tick_params(labelsize=18)
-  
-  # plot significant regions
-  sig1 = ax.contourf(lon, lat, reg_sig_xr, [np.min(reg_sig_xr),0.1], hatches=['..'], colors="None", zorder=1, transform=ccrs.PlateCarree())
-  
-  fig.show()
-  fig.savefig("%s.png" % name[var], dpi=1000)
-  
-  print("%s" % name[var])
-  
-
-for var in [2]: 
-
-  var_son = Month_to_Season(varss[var], "SON", "ave", 1979, 2020)
-  
-  var_reg, reg_sig = Linear_Regression_dim(var_son, sic_idx, 0)
-  var_reg_xr = xr.DataArray(var_reg,coords=[("lat",lat),("lon",lon)])
-  reg_sig_xr = xr.DataArray(reg_sig,coords=[("lat",lat),("lon",lon)])
-  
-  # plot var
-  
-  plt.close
-  
-  var_reg_xr, lon1 = add_cyclic_point(var_reg_xr, coord=lon)
-  #reg_sig_xr, lon2 = add_cyclic_point(reg_sig_xr, coord=lon)
-  
-  fig, ax = draw_north_polar_steoro(60)
-  
-  levels = [0,0.5,1,1.5,2,2.5,3,3.5,4,4.5] #np.linspace(-5,1,13)
-  
-  im = ax.contourf(lon1, lat, var_reg_xr, levels=levels, cmap='Reds', transform=ccrs.PlateCarree(), extend="both")
-  
-  cb = plt.colorbar(im, orientation='horizontal', ticks=levels[::2], shrink=0.8)
-  cb.ax.tick_params(labelsize=18)
+    cb = plt.colorbar(im, orientation='horizontal', ticks=levels[::2], shrink=0.8)
+    cb.ax.tick_params(labelsize=18)
   
   # plot significant regions
-  sig1 = ax.contourf(lon, lat, reg_sig_xr, [np.min(reg_sig_xr),0.1], hatches=['..'], colors="None", zorder=1, transform=ccrs.PlateCarree())
+    sig1 = ax.contourf(lon, lat, reg_sig_xr, [np.min(reg_sig_xr),0.1], hatches=['..'], colors="None", zorder=1, transform=ccrs.PlateCarree())
   
-  fig.show()
-  fig.savefig("%s.png" % name[var], dpi=1000)
+    fig.show()
+    fig.savefig("%s-%s.png" % (name[var],season), dpi=1000)
   
-  print("%s" % name[var])
+    print("%s-%s" % (name[var], season))
+
