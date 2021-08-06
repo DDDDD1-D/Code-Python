@@ -3,7 +3,8 @@ import xarray as xr
 from conform_dim import conform_dim
 from obtain_coords_dict import obtain_coords_dict
 
-def epflux_self(uwnd, vwnd, tk, lev, lat, scale):
+
+def epflux(uwnd, vwnd, tk, lev, lat, scale):
 	R = 287.0
 	Cp = 1.005*(10**3)
 	a = 6.37122e06
@@ -17,7 +18,7 @@ def epflux_self(uwnd, vwnd, tk, lev, lat, scale):
 
 	latfac = a_cos_phi * np.cos(phi)
 
-	theta = np.power(tk*conform_dim(lev,tk,(0,2,3))/1000.0,-(R/Cp))
+	theta = tk*np.power(conform_dim(lev,tk,(0,2,3))/1000.0,-(R/Cp))
 
 	theta_zonal_mean = np.mean(theta, axis=3)
 

@@ -11,7 +11,11 @@ def obtain_coords_dict(var):
 
 	if "lat" in tmp and np.shape(var['lat'])!=(): dim_name.append("lat")
 
+	if 	"latitude" in tmp and np.shape(var['latitude'])!=(): dim_name.append("latitude")
+
 	if "lon" in tmp and np.shape(var['lon'])!=(): dim_name.append("lon")
+
+	if "longitude" in tmp and np.shape(var['longitude'])!=(): dim_name.append("longitude")
 
 	coords = []
 
