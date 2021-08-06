@@ -59,7 +59,7 @@ def epflux(uwnd, vwnd, tk, lev, lat, scale):
 
 	# scale lev < 100, stratosphere
 	strat = np.ones(np.shape(lev))
-	strat[np.where(lev<100.0)] = 5.0
+	strat[np.where(lev<100.0)] = scale
 	strat = conform_dim(strat, F_p, [0,2])
 
 	F_p = F_p * strat
