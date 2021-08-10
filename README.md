@@ -21,5 +21,8 @@ util目录下：
 | Q1                       | 计算Q1                                                       |
 | draw_ts                  | 画时间序列                                                   |
 | epflux                   | 计算EP flux                                                  |
+| vertical_integration     | 垂直积分                                                     |
+| uv2div_cfd               | ncl中的uv2div_cfd计算                                        |
+| ck                       | 计算正压能量转换CK                                           |
 
 example目录下是应用utils进行计算的结果，与ncl完全一致
