@@ -24,5 +24,7 @@ util目录下：
 | vertical_integration     | 垂直积分                                                     |
 | uv2div_cfd               | ncl中的uv2div_cfd计算                                        |
 | ck                       | 计算正压能量转换CK                                           |
+| cp                       | 计算斜压能量转换CP                                           |
 
 example目录下是应用utils进行计算的结果，与ncl完全一致
+

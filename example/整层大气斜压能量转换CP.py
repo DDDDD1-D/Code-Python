@@ -13,7 +13,7 @@ sys.path.append("../utils/")
 from conform_dim import conform_dim
 from mon2season import Month_to_Season
 from Linear_Regression_dim import Linear_Regression_dim
-from ck import ck, ke
+from cp import cp
 from tibet_shp_load import tibet_shp_load
 from vertical_integration import vertical_integration2
 from draw_polar_steoro import draw_north_polar_steoro
@@ -23,6 +23,7 @@ re = 6378388.0
 
 uu = xr.open_dataset('../data/uwnd.mon.mean.nc')
 vv = xr.open_dataset('../data/vwnd.mon.mean.nc')
+tt = xr.open_dataset('../data/air.mon.mean.nc')
 
 lev = uu['level'] #.loc[1000:100]
 
@@ -45,33 +46,31 @@ tibet_shp = tibet_shp_load("../utils/tibet_shape")
 for season in ["SON", "OND", "NDJ"]:
 	uwnd = Month_to_Season(uu['uwnd'].loc[:,:,:0,:], season, "ave", 1979, 2020)
 	vwnd = Month_to_Season(vv['vwnd'].loc[:,:,:0,:], season, "ave", 1979, 2020)
+	tk = Month_to_Season(tt['air'].loc[:,:,:0,:], season, "ave", 1979, 2020)
 	
 	u_ave = uwnd.mean(dim="time")
 	v_ave = vwnd.mean(dim="time")
+	t_ave = tk.mean(dim="time")
 
 	ua, ua_sig = Linear_Regression_dim(uwnd, sic_idx, 0)
 	va, va_sig = Linear_Regression_dim(vwnd, sic_idx, 0)
+	ta, ta_sig = Linear_Regression_dim(tk, sic_idx, 0)
 
-	CK = ck(ua, va, u_ave, v_ave, dx, dy) 
+	CP = cp(ua, va, ta, u_ave, v_ave, t_ave, lev, lat)
 
-	CK = xr.DataArray(CK,coords=[("lev",lev),("lat",lat),("lon",lon)])
-
-	CK = vertical_integration2(CK, lev) * 1e3
-	CK = xr.DataArray(CK,coords=[("lat",lat),("lon",lon)])
-	CK.loc[90,:] = 0.0
-	CK.to_netcdf("CK-%s.nc" % season)
+	CP = xr.DataArray(CP,coords=[("lat",lat),("lon",lon)])
 
 	# plot var
 	
 	plt.close
 	
-	CK, lon1 = add_cyclic_point(CK, coord=lon)
+	CP, lon1 = add_cyclic_point(CP, coord=lon)
 	
 	fig, ax = draw_north_polar_steoro(10)
 	
-	levels = [-2.0,-1.5,-1.0,-0.5,0,0.5,1.0,1.5,2.0]
+	levels = np.linspace(-0.5,0.5,11)
 	
-	im = ax.contourf(lon1, lat, CK, transform=ccrs.PlateCarree(), extend="both", cmap=cmps.BlueDarkRed18, levels=levels)
+	im = ax.contourf(lon1, lat, CP, transform=ccrs.PlateCarree(), extend="both", cmap=cmps.BlueDarkRed18, levels=levels)
 	
 	cb = plt.colorbar(im, orientation='horizontal',  shrink=0.8)
 	cb.ax.tick_params(labelsize=18)
