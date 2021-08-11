@@ -46,5 +46,23 @@ cb.ax.tick_params(labelsize=18)
 # plot significant regions
 sig1 = ax.contourf(lon, lat, np.abs(reg_sig),[2.043,np.max(reg_sig)], hatches=['..'], colors="None", zorder=1, transform=ccrs.PlateCarree())
 
+x, y = np.arange(120,180), np.array([71]*60)
+ax.plot(x, y, marker='.', c='r', markersize=5, transform=ccrs.PlateCarree())
+
+x, y = np.linspace(-180,-135,60), np.array([71]*60)
+ax.plot(x, y, marker='.', c='r', markersize=5,transform=ccrs.PlateCarree())
+
+x, y = np.linspace(-180,-135,60), np.array([80]*60)
+ax.plot(x, y, marker='.', c='r', markersize=5,transform=ccrs.PlateCarree())
+
+x, y = np.arange(120,180), np.array([80]*60)
+ax.plot(x, y, marker='.', c='r', markersize=5,transform=ccrs.PlateCarree())
+
+x, y = np.array([120]*50), np.linspace(71,80,50)
+ax.plot(x, y, marker='.', c='r', markersize=5,transform=ccrs.PlateCarree())
+
+x, y = np.array([-135]*50), np.linspace(71,80,50)
+ax.plot(x, y, marker='.', c='r', markersize=5,transform=ccrs.PlateCarree())
+
 fig.show()
 fig.savefig("SON.png", dpi=1000)
