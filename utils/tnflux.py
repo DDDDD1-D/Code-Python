@@ -51,7 +51,7 @@ def tnflux(u_c, v_c, hgt_a, lev, lat, lon, mask_threshold):
 	FX = np.where(Fspd<mask_threshold, np.nan, FX)
 	FY = np.where(Fspd<mask_threshold, np.nan, FY)
 
-	Fx = xr.DataArray(FX, coords=[("lat",lat),("lon",lon)])
-	Fy = xr.DataArray(FY, coords=[("lat",lat),("lon",lon)])
+	Fx = xr.DataArray(FX, coords=[("lat",lat.values),("lon",lon.values)])
+	Fy = xr.DataArray(FY, coords=[("lat",lat.values),("lon",lon.values)])
 
 	return Fx, Fy

@@ -24,7 +24,7 @@ var_nov = var.sel(time=var.time.dt.month.isin(11)&var.time.dt.year.isin([x for x
 
 # SON
 SON = (var_sep.values+var_oct.values+var_nov.values) / 3.0
-var_son = xr.DataArray(SON, coords=[("time",var_sep['time']),("lat",lat),("lon",lon)])
+var_son = xr.DataArray(SON, coords=[("time",var_sep['time'].values),("lat",lat.values),("lon",lon.values)])
 
 var_son.coords['lon'] = (var_son.coords['lon'] + 360) % 360 
 var_son = var_son.sortby(var_son.lon)

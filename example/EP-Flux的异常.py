@@ -37,15 +37,15 @@ for season in ["SON", "OND", "NDJ"]:
 	
 	hgt, hgt_sig = Linear_Regression_dim(hgt, sic_idx, 0)
 	hgt = np.mean(hgt, axis=2)
-	hgt = xr.DataArray(hgt,coords=[("lev",lev),("lat",lat)])
+	hgt = xr.DataArray(hgt,coords=[("lev",lev.values),("lat",lat.values)])
 
 	F_phi, F_p, EP_div, dudt = epflux(uwnd, vwnd, tk, lev, lat, scale)
 	
 	F_phi, F_phi_sig = Linear_Regression_dim(F_phi, sic_idx, 0)
-	F_phi = xr.DataArray(F_phi,coords=[("lev",lev),("lat",lat)])
+	F_phi = xr.DataArray(F_phi,coords=[("lev",lev.values),("lat",lat.values)])
 	
 	F_p, F_p_sig = Linear_Regression_dim(F_p, sic_idx, 0)
-	F_p = xr.DataArray(F_p,coords=[("lev",lev),("lat",lat)])
+	F_p = xr.DataArray(F_p,coords=[("lev",lev.values),("lat",lat.values)])
 
 	F_phi.loc[10,:] = np.nan
 	F_p.loc[10,:] = np.nan
@@ -56,17 +56,17 @@ for season in ["SON", "OND", "NDJ"]:
 	Fphi_not_sig = np.where(np.logical_and(F_phi_sig>0.2, F_p_sig>0.2), F_phi, np.nan)
 	Fp_not_sig = np.where(np.logical_and(F_phi_sig>0.2, F_p_sig>0.2), F_p, np.nan)
 
-	Fphi_sig_xr = xr.DataArray(Fphi_sig,coords=[("lev",lev),("lat",lat)])
-	Fp_sig_xr = xr.DataArray(Fp_sig,coords=[("lev",lev),("lat",lat)])
+	Fphi_sig_xr = xr.DataArray(Fphi_sig,coords=[("lev",lev.values),("lat",lat.values)])
+	Fp_sig_xr = xr.DataArray(Fp_sig,coords=[("lev",lev.values),("lat",lat.values)])
 
-	Fphi_not_sig_xr = xr.DataArray(Fphi_not_sig,coords=[("lev",lev),("lat",lat)])
-	Fp_not_sig_xr = xr.DataArray(Fp_not_sig,coords=[("lev",lev),("lat",lat)])
+	Fphi_not_sig_xr = xr.DataArray(Fphi_not_sig,coords=[("lev",lev.values),("lat",lat.values)])
+	Fp_not_sig_xr = xr.DataArray(Fp_not_sig,coords=[("lev",lev.values),("lat",lat.values)])
 	
 	EP_div, EP_div_sig = Linear_Regression_dim(EP_div, sic_idx, 0)
-	EP_div = xr.DataArray(EP_div,coords=[("lev",lev),("lat",lat)])
+	EP_div = xr.DataArray(EP_div,coords=[("lev",lev.values),("lat",lat.values)])
 	
 	dudt, dudt_sig = Linear_Regression_dim(dudt, sic_idx, 0)
-	dudt = xr.DataArray(dudt,coords=[("lev",lev),("lat",lat)])
+	dudt = xr.DataArray(dudt,coords=[("lev",lev.values),("lat",lat.values)])
 
 	print(np.max(hgt),np.min(hgt))
 	

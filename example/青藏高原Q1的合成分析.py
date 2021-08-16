@@ -53,8 +53,8 @@ years_low = [1980,1982,1985,1986,1987,1990,1992,1993,1994,2003]
 years_high = [2006,2008,2010,2011,2012,2014,2015,2016,2017,2018,2019]
 diff, tval = composite(q1_jja, years_low, years_high)
 
-diff = xr.DataArray(diff,coords=[("lat",lat),("lon",lon)])
-tval = xr.DataArray(tval,coords=[("lat",lat),("lon",lon)])
+diff = xr.DataArray(diff,coords=[("lat",lat.values),("lon",lon.values)])
+tval = xr.DataArray(tval,coords=[("lat",lat.values),("lon",lon.values)])
 
 
 

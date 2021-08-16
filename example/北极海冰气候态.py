@@ -25,7 +25,7 @@ var_nov = var.sel(time=var.time.dt.month.isin(11)&var.time.dt.year.isin([x for x
 # SON
 SON = (var_sep.values+var_oct.values+var_nov.values) / 3.0
 SON = np.where(SON<0.05, np.nan, SON)
-var_son = xr.DataArray(SON, coords=[("time",var_sep['time']),("lat",lat),("lon",lon)])
+var_son = xr.DataArray(SON, coords=[("time",var_sep['time'].values),("lat",lat.values),("lon",lon.values)])
 
 var_son_ave = var_son.mean(dim='time')
 var_son_std = var_son.std(dim='time')

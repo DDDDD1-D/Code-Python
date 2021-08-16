@@ -24,9 +24,9 @@ sp = dsq['q']
 uq,vq,div=water_vapor_flux_div_column(sp,uwnd,vwnd,lat,lon,lev)
 
 
-uq = xr.DataArray(uq,coords=[("time",time),("lat",lat),("lon",lon)], name="uq")
-vq = xr.DataArray(vq,coords=[("time",time),("lat",lat),("lon",lon)], name="vq")
-div = xr.DataArray(div,coords=[("time",time),("lat",lat),("lon",lon)], name="div")
+uq = xr.DataArray(uq,coords=[("time",time.values),("lat",lat.values),("lon",lon.values)], name="uq")
+vq = xr.DataArray(vq,coords=[("time",time.values),("lat",lat.values),("lon",lon.values)], name="vq")
+div = xr.DataArray(div,coords=[("time",time.values),("lat",lat.values),("lon",lon.values)], name="div")
 
 
 div.to_netcdf("div.nc")

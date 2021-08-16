@@ -50,8 +50,8 @@ for myseason in ["SON","OND","NDJ"]:
 	
 	prec_reg, reg_sig = Linear_Regression_dim(prec_son, sic_idx, 0)
 
-	prec_reg_xr = xr.DataArray(prec_reg,coords=[("lat",lat),("lon",lon)])
-	reg_sig_xr = xr.DataArray(reg_sig,coords=[("lat",lat),("lon",lon)])
+	prec_reg_xr = xr.DataArray(prec_reg,coords=[("lat",lat.values),("lon",lon.values)])
+	reg_sig_xr = xr.DataArray(reg_sig,coords=[("lat",lat.values),("lon",lon.values)])
 
 	uq_reg, uq_sig = Linear_Regression_dim(uq_son, sic_idx, 0)
 	vq_reg, vq_sig = Linear_Regression_dim(vq_son, sic_idx, 0)
@@ -68,11 +68,11 @@ for myseason in ["SON","OND","NDJ"]:
 	u_not_sig = np.where(np.logical_and(uq_sig>0.1, vq_sig>0.1), uq_reg, np.nan)
 	v_not_sig = np.where(np.logical_and(uq_sig>0.1, vq_sig>0.1), vq_reg, np.nan)
 
-	u_sig_xr = xr.DataArray(u_sig,coords=[("lat",lat),("lon",lon)])
-	v_sig_xr = xr.DataArray(v_sig,coords=[("lat",lat),("lon",lon)])
+	u_sig_xr = xr.DataArray(u_sig,coords=[("lat",lat.values),("lon",lon.values)])
+	v_sig_xr = xr.DataArray(v_sig,coords=[("lat",lat.values),("lon",lon.values)])
 
-	u_not_sig_xr = xr.DataArray(u_not_sig,coords=[("lat",lat),("lon",lon)])
-	v_not_sig_xr = xr.DataArray(v_not_sig,coords=[("lat",lat),("lon",lon)])
+	u_not_sig_xr = xr.DataArray(u_not_sig,coords=[("lat",lat.values),("lon",lon.values)])
+	v_not_sig_xr = xr.DataArray(v_not_sig,coords=[("lat",lat.values),("lon",lon.values)])
 
 	tibet_shp = tibet_shp_load("../utils/tibet_shape")
 	

@@ -22,20 +22,3 @@ def cp(ua, va, ta, u_ave, v_ave, t_ave, lev, lat):
 	cp = -vertical_integration2(dcp, lev)
 
 	return cp
-
-
-def ape(ta, t_ave, lev):
-	R = 290.0
-	R_cp = 0.286
-
-	lev = lev * 100.0
-
-	dp = np.gradient(lev)
-	dtdp = np.gradient(t_ave, axis=0) / conform_dim(dp, t_ave, [1,2])
-	sigma = (R_cp*t_ave/conform_dim(lev,t_ave,[1,2])) - dtdp
-
-	ape_local = R*ta*ta/2.0/sigma/conform_dim(lev,ta,[1,2])
-
-	ape = vertical_integration2(ape_local, lev)
-
-	return ape

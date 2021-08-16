@@ -30,12 +30,12 @@ for season in ["SON", "OND", "NDJ"]:
 	hgt = np.mean(uwnd,axis=3)
 
 	hgt, hgt_sig = Linear_Regression_dim(hgt, sic_idx, 0)
-	hgt = xr.DataArray(hgt,coords=[("lev",lev),("lat",lat)])
-	hgt_sig = xr.DataArray(hgt_sig,coords=[("lev",lev),("lat",lat)])
+	hgt = xr.DataArray(hgt,coords=[("lev",lev.values),("lat",lat.values)])
+	hgt_sig = xr.DataArray(hgt_sig,coords=[("lev",lev.values),("lat",lat.values)])
 
 	uwnd = np.mean(uwnd, axis=3)
 	uwnd = np.mean(uwnd, axis=0)
-	uwnd = xr.DataArray(uwnd,coords=[("lev",lev),("lat",lat)])
+	uwnd = xr.DataArray(uwnd,coords=[("lev",lev.values),("lat",lat.values)])
 
 	print(np.max(hgt),np.min(hgt))
 	

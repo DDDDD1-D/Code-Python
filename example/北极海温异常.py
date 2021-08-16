@@ -43,8 +43,8 @@ for myseason in season_name:
 	var_son = Month_to_Season(var, myseason, "ave", year_start, year_end)
 	
 	var_reg, reg_sig = Linear_Regression_dim(var_son, sic_idx, 0)
-	var_reg_xr = xr.DataArray(var_reg,coords=[("lat",lat),("lon",lon)])
-	reg_sig_xr = xr.DataArray(reg_sig,coords=[("lat",lat),("lon",lon)])
+	var_reg_xr = xr.DataArray(var_reg,coords=[("lat",lat.values),("lon",lon.values)])
+	reg_sig_xr = xr.DataArray(reg_sig,coords=[("lat",lat.values),("lon",lon.values)])
 	
 	# plot var
 	

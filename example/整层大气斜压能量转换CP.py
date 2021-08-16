@@ -58,7 +58,7 @@ for season in ["SON", "OND", "NDJ"]:
 
 	CP = cp(ua, va, ta, u_ave, v_ave, t_ave, lev, lat)
 
-	CP = xr.DataArray(CP,coords=[("lat",lat),("lon",lon)])
+	CP = xr.DataArray(CP,coords=[("lat",lat.values),("lon",lon.values)])
 
 	# plot var
 	

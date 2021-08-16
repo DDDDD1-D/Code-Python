@@ -41,8 +41,8 @@ for myseason in ["SON","OND","NDJ"]:
 	hgt_son = Month_to_Season(hgt, myseason, "ave", year_start, year_end)
 	
 	hgt_reg, reg_sig = Linear_Regression_dim(hgt_son, sic_idx, 0)
-	hgt_reg_xr = xr.DataArray(hgt_reg,coords=[("lat",lat),("lon",lon)])
-	reg_sig_xr = xr.DataArray(reg_sig,coords=[("lat",lat),("lon",lon)])
+	hgt_reg_xr = xr.DataArray(hgt_reg,coords=[("lat",lat.values),("lon",lon.values)])
+	reg_sig_xr = xr.DataArray(reg_sig,coords=[("lat",lat.values),("lon",lon.values)])
 
 	reg_sig_xr.loc[15:] = 1.0
 

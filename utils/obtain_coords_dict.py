@@ -19,6 +19,6 @@ def obtain_coords_dict(var):
 
 	coords = []
 
-	for name in dim_name: coords.append((name, var[name]))
+	for name in dim_name: coords.append((name, var[name].values))
 
 	return coords

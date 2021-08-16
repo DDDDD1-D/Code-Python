@@ -36,8 +36,8 @@ for myseason in ["SON","OND","NDJ"]:
 	
 	prec_reg, reg_sig = Linear_Regression_dim(prec_son, sic_idx, 0)
 
-	prec_reg_xr = xr.DataArray(prec_reg,coords=[("lat",lat),("lon",lon)])
-	reg_sig_xr = xr.DataArray(reg_sig,coords=[("lat",lat),("lon",lon)])
+	prec_reg_xr = xr.DataArray(prec_reg,coords=[("lat",lat.values),("lon",lon.values)])
+	reg_sig_xr = xr.DataArray(reg_sig,coords=[("lat",lat.values),("lon",lon.values)])
 
 	tibet_shp = tibet_shp_load("../utils/tibet_shape")
 	

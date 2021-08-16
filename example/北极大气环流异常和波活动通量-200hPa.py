@@ -57,8 +57,8 @@ for myseason in ["SON","OND","NDJ"]:
 	vwnd_son = Month_to_Season(vwnd, myseason, "ave", year_start, year_end)
 	
 	hgt_reg, reg_sig = Linear_Regression_dim(hgt_son, sic_idx, 0)
-	hgt_reg_xr = xr.DataArray(hgt_reg,coords=[("lat",lat),("lon",lon)])
-	reg_sig_xr = xr.DataArray(reg_sig,coords=[("lat",lat),("lon",lon)])
+	hgt_reg_xr = xr.DataArray(hgt_reg,coords=[("lat",lat.values),("lon",lon.values)])
+	reg_sig_xr = xr.DataArray(reg_sig,coords=[("lat",lat.values),("lon",lon.values)])
 	
 	Fx, Fy = tnflux(u_c, v_c, hgt_reg_xr, mylev, lat, lon, 0.01)
 	

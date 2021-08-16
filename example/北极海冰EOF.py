@@ -40,7 +40,7 @@ mu = np.mean(var_son_filter, axis=0)
 sigma = np.std(var_son_filter, axis=0)
 
 var_son_filter = (var_son_filter - conform_dim(mu,var_son_filter,[0])) / conform_dim(sigma,var_son_filter,[0])
-var_son_filter = xr.DataArray(var_son_filter,coords=[("time",var_son['time']),("lat",lat),("lon",lon)])
+var_son_filter = xr.DataArray(var_son_filter,coords=[("time",var_son['time'].values),("lat",lat.values),("lon",lon.values)])
 
 var_son_target = var_son_filter.loc[:,90:60,:]
 
@@ -70,8 +70,8 @@ for num, error in enumerate(errors):
 PC = np.array(PCs[:,0])
 
 var_reg, reg_sig = Linear_Regression_dim(var_son, PC, 0)
-var_reg = xr.DataArray(var_reg,coords=[("lat",lat),("lon",lon)])
-reg_sig = xr.DataArray(reg_sig,coords=[("lat",lat),("lon",lon)])
+var_reg = xr.DataArray(var_reg,coords=[("lat",lat.values),("lon",lon.values)])
+reg_sig = xr.DataArray(reg_sig,coords=[("lat",lat.values),("lon",lon.values)])
 
 
 # plot var

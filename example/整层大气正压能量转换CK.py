@@ -54,10 +54,10 @@ for season in ["SON", "OND", "NDJ"]:
 
 	CK = ck(ua, va, u_ave, v_ave, dx, dy) 
 
-	CK = xr.DataArray(CK,coords=[("lev",lev),("lat",lat),("lon",lon)])
+	CK = xr.DataArray(CK,coords=[("lev",lev.values),("lat",lat.values),("lon",lon.values)])
 
 	CK = vertical_integration2(CK, lev) * 1e3
-	CK = xr.DataArray(CK,coords=[("lat",lat),("lon",lon)])
+	CK = xr.DataArray(CK,coords=[("lat",lat.values),("lon",lon.values)])
 	CK.loc[90,:] = 0.0
 	CK.to_netcdf("CK-%s.nc" % season)
 
