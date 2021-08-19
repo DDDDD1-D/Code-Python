@@ -25,6 +25,7 @@ util目录下：
 | uv2div_cfd               | ncl中的uv2div_cfd计算                                        |
 | ck                       | 计算正压能量转换CK                                           |
 | cp                       | 计算斜压能量转换CP                                           |
+| rossby_wave_source       | 计算罗斯贝波波源                                             |
 
 example目录下是应用utils进行计算的结果，与ncl完全一致
 
