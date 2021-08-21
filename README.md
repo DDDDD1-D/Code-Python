@@ -29,3 +29,16 @@ util目录下：
 
 example目录下是应用utils进行计算的结果，与ncl完全一致
 
+rossby-wave-ray-tracing目录下是rossby wave ray tracing的代码。
+
+| 文件名            | 备忘                                                  |
+| ----------------- | ----------------------------------------------------- |
+| calc_2d_raytrace  | ray tracing核心代码                                   |
+| zfltr             | calc_2d_raytrace里可以设置要不要滤波，zfltr是滤波函数 |
+| run               | 批量设置扰动后批量ray tracing                         |
+| plot              | 将同一个波数不同扰动位置的ray画在一张图上             |
+| plot2，batch_plot | 批量画每一条ray                                       |
+| background        | 计算背景场                                            |
+| down              | 下载NCEP-NCAR再分析I数据                              |
+| clean             | 清空Output目录                                        |
+
