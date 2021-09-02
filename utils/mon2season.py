@@ -68,7 +68,7 @@ def Month_to_Season(var, season, operate, year_start, year_end):
 
 	tmp = (var1.values + var2.values + var3.values) / div_factor
 
-	coords = obtain_coords_dict(var2)
+	coords = obtain_coords_dict(var1)
 
 	var_season = xr.DataArray(tmp, coords=coords)
 	

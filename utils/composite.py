@@ -1,5 +1,7 @@
 import numpy as np
 import xarray as xr
+
+
 def composite(var, years_low, years_high):
 	var_low = var.sel(time=var.time.dt.year.isin(years_low)) 
 	var_high = var.sel(time=var.time.dt.year.isin(years_high))
