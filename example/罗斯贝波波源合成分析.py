@@ -22,7 +22,7 @@ from draw_PlateCarree import draw_PlateCarree
 from rossby_wave_source import RWS
 
 year_start = 1967
-year_end = 2020
+year_end = 2019
 
 dsu = xr.open_dataset('uwnd.mon.mean.nc')
 dsv = xr.open_dataset('vwnd.mon.mean.nc')

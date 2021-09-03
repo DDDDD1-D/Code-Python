@@ -1,5 +1,6 @@
 import numpy as np
 import xarray as xr
+from conform_dim import conform_dim
 
 def tnflux(u_c, v_c, hgt_a, lev, lat, lon, mask_threshold):
 	"""
@@ -29,11 +30,11 @@ def tnflux(u_c, v_c, hgt_a, lev, lat, lon, mask_threshold):
 
 	psi_a = ((hgt_a * ga).T / f).T
 
-	dpsi_dlon = np.gradient(psi_a,dlon[1])[1]
-	dpsi_dlat = np.gradient(psi_a,dlat[1])[0]
-	d2psi_dlon2 = np.gradient(dpsi_dlon,dlon[1])[1]
-	d2psi_dlat2 = np.gradient(dpsi_dlat,dlat[1])[0]
-	d2psi_dlondlat = np.gradient(dpsi_dlat,dlon[1])[1]
+	dpsi_dlon = np.gradient(psi_a,axis=1) / conform_dim(dlon, psi_a, [0])
+	dpsi_dlat = np.gradient(psi_a,axis=0) / conform_dim(dlat, psi_a, [1])
+	d2psi_dlon2 = np.gradient(dpsi_dlon,axis=1) / conform_dim(dlon, psi_a, [0])
+	d2psi_dlat2 = np.gradient(dpsi_dlat,axis=0) / conform_dim(dlat, psi_a, [1])
+	d2psi_dlondlat = np.gradient(dpsi_dlat,axis=1) / conform_dim(dlon, psi_a, [0])
 
 	xuterm = dpsi_dlon * dpsi_dlon - psi_a * d2psi_dlon2
 	xvterm = dpsi_dlon * dpsi_dlat - psi_a * d2psi_dlondlat

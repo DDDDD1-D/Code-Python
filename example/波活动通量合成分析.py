@@ -57,7 +57,7 @@ for myseason in ["SON","OND","NDJ","DJF"]:
   diff = xr.DataArray(diff,coords=[("lat",lat.values),("lon",lon.values)])
   tval = xr.DataArray(tval,coords=[("lat",lat.values),("lon",lon.values)])
 
-  Fx, Fy = tnflux(u_c, v_c, diff, 200.0, lat, lon, 0.2)
+  Fx, Fy = tnflux(u_c, v_c, diff, 200.0, lat, lon, 0.1)
   
   Fx.loc[11:,:] = np.nan
   Fy.loc[11:,:] = np.nan
@@ -86,19 +86,19 @@ for myseason in ["SON","OND","NDJ","DJF"]:
   gl.xlabel_style={'size':18}
   gl.ylabel_style={'size':18}
 
-  levels = np.arange(-50,50+5,5)
+  levels = np.arange(-100,100+10,10)
    
-  im = ax.contourf(lon1, lat, diff, levels=levels, cmap=cmps.BlueDarkRed18, transform=proj, extend="both")
+  im = ax.contourf(lon1, lat, diff, levels=levels, cmap=cmps.BlueWhiteOrangeRed, transform=ccrs.PlateCarree(), extend="both")
   
-  cb = plt.colorbar(im, orientation='horizontal', ticks=levels[::2], shrink=0.8)
+  cb = plt.colorbar(im, orientation='horizontal', ticks=levels[::4], shrink=0.8)
   cb.ax.tick_params(labelsize=18)
   
   # plot significant regions
-  sig1 = ax.contourf(lon2, lat, tval, [2.086,np.max(tval)], hatches=['..'], colors="None", zorder=1, transform=proj)
+  sig1 = ax.contourf(lon2, lat, tval, [2.086,np.max(tval)], hatches=['..'], colors="None", zorder=1, transform=ccrs.PlateCarree())
   
   fontproperties = {"size":14}
-  waf = ax.quiver(lonFx[::2], lat[::2], Fx[::2,::2], Fy[::2,::2], transform=ccrs.PlateCarree(), pivot='mid', width=0.0018, scale=30.0, headwidth=4)
-  waf_key = ax.quiverkey(waf, 0.85, -0.13, 2.0, "2.0", color="black", fontproperties=fontproperties)
+  waf = ax.quiver(lonFx[::2], lat[::2], Fx[::2,::2], Fy[::2,::2], transform=ccrs.PlateCarree(), pivot='mid', width=0.0018, scale=70.0, headwidth=4)
+  waf_key = ax.quiverkey(waf, 0.85, -0.18, 2.0, "2.0", color="black", fontproperties=fontproperties)
 
   fig.show()
   fig.savefig("%s.png" % myseason, dpi=1000)
