@@ -26,6 +26,7 @@ util目录下：
 | ck                       | 计算正压能量转换CK                                           |
 | cp                       | 计算斜压能量转换CP                                           |
 | rossby_wave_source       | 计算罗斯贝波波源                                             |
+| uv2vor_cfd               | ncl中的uv2vor_cfd计算                                        |
 
 example目录下是应用utils进行计算的结果，与ncl完全一致
 
