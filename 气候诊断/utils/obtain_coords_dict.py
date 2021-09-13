@@ -9,6 +9,8 @@ def obtain_coords_dict(var):
 
 	if "level" in tmp and np.shape(var['level'])!=(): dim_name.append("level")
 
+	if "lev" in tmp and np.shape(var['lev'])!=(): dim_name.append("lev")
+
 	if "lat" in tmp and np.shape(var['lat'])!=(): dim_name.append("lat")
 
 	if 	"latitude" in tmp and np.shape(var['latitude'])!=(): dim_name.append("latitude")
