@@ -15,7 +15,7 @@ def draw_north_polar_steoro(lat_l):
 	circle = mpath.Path(verts * radius + center)
 	
 	ax.coastlines()
-	ax.gridlines(crs=ccrs.PlateCarree(), xlocs=np.linspace(-180,180,13), ylocs=np.linspace(lat_l,80,4), draw_labels=False, linewidth=1.2, color='gray', alpha=0.5, linestyle='--')
+	ax.gridlines(crs=ccrs.PlateCarree(), xlocs=np.linspace(-180,180,13), ylocs=[20,40,60,80], draw_labels=False, linewidth=1.2, color='gray', alpha=0.5, linestyle='--')
 	ax.set_extent([-180,180,lat_l,90], crs=ccrs.PlateCarree())
 	ax.set_boundary(circle, transform=ax.transAxes) 
 	cbar_kwargs = {'shrink':0.8}
